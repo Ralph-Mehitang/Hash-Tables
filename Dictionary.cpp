@@ -4,7 +4,7 @@
 void Dictonary:: readin(){
 ofstream myfile;
 myfile.open("english.txt");
-myfile<<"writing this to a file"<<endl;
+// inserting function call for codde in here 
 myfile.close();
 
 }
