@@ -2,11 +2,14 @@
 #define DICTIONARY_H
 #include <iostream>
 
+
 class Dictionary
 {
 
 private:
 	int buckets;
+	int key;
+	int values;
 
 public:
 
@@ -14,5 +17,8 @@ public:
 	} //constructor
 	~Dictionary(); //Destructor
 	void readin();
+	void insert();
+	void deletehash();
+	void search();
 };
 #endif
