@@ -47,6 +47,11 @@ else {
 }
 }
 
+int modhash(){
+	int total=0;
+	for(int i=0; i<word.leg)
+}
+
 int hashtable::buckets(int value){
 	int count=0;
 	//if hash value is empty then return 0 for it is empty

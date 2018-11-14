@@ -1,27 +1,37 @@
 #include <iostream>
 #include <fstream>
 #include "Dictionary.h"
-/*
-void Dictionary:: readin(){
-ofstream myfile;
-myfile.open("english.txt");
-// inserting function call for code in here 
-myfile.close();
 
-}
-*/
+//constructor
 
-//insert of hash
-void Dictionary:: insert(){
+Dictionary::Dictionary(){
 
-	Dictionary dict;
-}
-//delete hash functionality
-void Dictionary::deletehash(){
-
-}
-//search function in hash
-void Dictionary:: search(){
-
+	hashable=new hashtable*[size];
+	top=new hashtable*[size];
+	bucketsize=new int[size];
+	for (int i = 0; i <size; i++)
+	{
+		hashable[i]=NULL;
+		top[i]=NULL;
+		buckets[i]=0;
+	}
+	total=0;
 }
 
+bool ::Dictionary isfull(){
+	//implement code 
+}
+
+bool Dictionary::isempty(int k){
+	if(k>=0&&k<size){
+		return hashable[k]==NULL;
+	}
+
+	else
+		return true;
+
+}
+
+int hashtable(string word){
+
+}

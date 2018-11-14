@@ -1,2 +1,2 @@
 all:
-	g++ -std=c++17 	hashtable.h hashtable.cpp Dictionary.h Dictionary.cpp Main.cpp
+	g++ -std=c++17  Dictionary.h Dictionary.cpp Main.cpp

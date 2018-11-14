@@ -22,7 +22,6 @@ public:
 	~hashtable();
 	hashtable(size_t); 
 	void readin();
-
 	int modhash(long);
 	int mulhash(long);
 	void insert(string);
