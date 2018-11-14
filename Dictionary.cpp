@@ -33,5 +33,19 @@ bool Dictionary::isempty(int k){
 }
 
 int hashtable(string word){
+int s=131;
+long total=0;
+for (int i = 0; i < word.leght(); i++)
+{
+	sum=(sum*seed) + word[i];
+}
+sum=sum%size;
 
+return abs(sum); //absolute value function change later
+}
+
+void Dictionary::insert(string nancy){
+if(!isfull()){
+	int k=hash
+}
 }
