@@ -1,7 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include "Dictionary.h"
-
+#include <cctype>
+#include<string>
+#include <limits>
+#include <iomanip>
 //constructor
 //const int size_table = 466546;
 Dictionary::Dictionary(){
@@ -126,14 +129,38 @@ void Dictionary:: userinput(){
 	cout<<"Please enter a sentence"<<endl;
 	getline(cin,input);
 }
-
-void Dictionary::spellcheck(string word){
+/*
+void Dictionary::spellcheck(hashtable node, string word){
 		int result=0;
 	int suggestion=0;
 	string text[256]; //using all ascii characters to check for unique characters ex.don't
-
+	string userinput;
+	string currword;
+	char r;
+	cout<<"Please enter a sentence: ";
+	getline(cin,userinput);
+	//splits each word from the inputed string into individual workds to see if they are spelled correctly
+	char* split=strtok(userinput.c_str(),DELIMITERS);
+	while(split!=NULL){
+		currword=split;
+		currword=lowercase(currword);
+		result+=spellcheck(hashtable,currword)
+	}
+	if (result>0)
+	{
+		cout<<"The number of words that were splled incorrectly:"<<result<<endl;
+		result=0;
+			}
 }
-
+//converts to lowercase
+void Dictionary::lowercase(string word){
+	for (int i = 0; i < word.length; i++)
+	{
+		word[x] =lowercase(word[x]);
+	}
+	return word;
+}
+*/
 Dictionary::~Dictionary(){
 total=0;
 int check=0;

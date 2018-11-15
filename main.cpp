@@ -29,6 +29,8 @@ std::time_t end_time = std::chrono::system_clock::to_time_t(end);
 std::cout << "finished at " << std::ctime(&end_time)
 << "elapsed time: " << elapsed_seconds.count() << "s\n";
 hashtable.print();
+cout<<endl;
+hashtable.userinput();
 
 
 	return 0;
