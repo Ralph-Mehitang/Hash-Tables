@@ -7,7 +7,7 @@ using namespace std;
 class Dictionary
 {
 private:
-	const int size = 466546; // sets the hash table size to the total words in english.txt +1
+	const int size=16384; // sets the hash table size to the total words in english.txt +1
 	int total;
 	int *bucketsize;
 	struct hashtable
@@ -25,17 +25,17 @@ public:
 
 	Dictionary();//constructor
 	~Dictionary(); //Destructor
-	void readin();
 	void insert(string);
-	void append();
-	void deletehash();
 	void search();
 	bool isempty(int key); // returns true if the table is empty
 	bool isfull(); //returns true if the table is full
-	int hashtable(string);
+	int hash_table(string); //
 	int table_size(); // returns the table size
 	int totalval(); // returns the total number of words that are in the table
-	int buckets(int);
+	int buckets(int); //bucketsize
+	void print(); //print table stats
+	void userinput();//user input function
+	void spellcheck(string); //spellchecker
 
 
 };

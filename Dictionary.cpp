@@ -3,7 +3,7 @@
 #include "Dictionary.h"
 
 //constructor
-
+//const int size_table = 466546;
 Dictionary::Dictionary(){
 
 	hashable=new hashtable*[size];
@@ -13,12 +13,12 @@ Dictionary::Dictionary(){
 	{
 		hashable[i]=NULL;
 		top[i]=NULL;
-		buckets[i]=0;
+		bucketsize[i]=0;
 	}
 	total=0;
 }
 
-bool ::Dictionary isfull(){
+bool ::Dictionary:: isfull(){
 	//implement code 
 }
 
@@ -32,20 +32,118 @@ bool Dictionary::isempty(int k){
 
 }
 
-int hashtable(string word){
-int s=131;
+int Dictionary:: hash_table(string word){
+int seed=131;
 long total=0;
-for (int i = 0; i < word.leght(); i++)
+for (int i = 0; i < word.length(); i++)
 {
-	sum=(sum*seed) + word[i];
+	total=(total*seed) + word[i];
 }
-sum=sum%size;
+total=total % size;
 
-return abs(sum); //absolute value function change later
+return abs(total); //absolute value function change later
 }
 
 void Dictionary::insert(string nancy){
 if(!isfull()){
-	int k=hash
+	int k=hash_table(nancy);
+	hashtable *enter=hashable[k];
+	if(enter==NULL){
+		enter=new hashtable;
+		enter->word=nancy;
+		enter->key=k;
+		enter->next= NULL;
+		enter->prev= NULL;
+		hashable[k]=enter;
+		top[k]=enter;
+
+	}
+	else{
+		while(enter !=NULL)
+			enter=enter->next;
+		enter= new hashtable;
+		enter->word=nancy;
+		enter->key=k;
+		enter->next=NULL;
+		enter->prev=top[k];
+		top[k]->next=enter;
+		top[k] = enter;
+	}
+		bucketsize[k]++; //increment the bucketsize
+		total++; //increment the total number of words
 }
 }
+
+int Dictionary::buckets(int key){
+
+return bucketsize[key];
+}
+
+int Dictionary :: table_size(){
+return size;
+
+}
+
+int Dictionary:: totalval(){
+
+	return total;
+}
+
+
+void Dictionary :: print(){
+	int largestbucket=-9999999;
+	int largestindex=0;
+	int smallestbucket=9999999;
+	int smallestindex=0;
+	double usedbuckets=0;
+	for (int i = 0; i <table_size(); i++)
+	{
+		if (!isempty(i))
+		{
+			if(smallestbucket>buckets(i)){
+				smallestbucket=buckets(i);
+				smallestindex=i;
+			}
+			if (largestbucket<buckets(i)){
+				largestbucket=buckets(i);
+				largestindex=i;
+			}
+			usedbuckets++;
+			
+		}
+	}
+	cout<<"Stats:"<<endl;
+	cout<<"Total words in Dictionary "<<totalval()<<endl;
+	cout<<"Size of hash table = "<<table_size()<<endl;
+	cout<<"Largest bucket size : "<<largestbucket<<endl;
+	cout<<"smallest bucket size : "<<smallestbucket<<endl;
+	cout <<"total bucket used ="<<usedbuckets<<endl;
+	cout<<"average number of nodes in each bucket "<<totalval()/usedbuckets<<endl;
+
+}
+void Dictionary:: userinput(){
+	string input;
+	cout<<"Please enter a sentence"<<endl;
+	getline(cin,input);
+}
+
+void Dictionary::spellcheck(string word){
+		int result=0;
+	int suggestion=0;
+	string text[256]; //using all ascii characters to check for unique characters ex.don't
+
+}
+
+Dictionary::~Dictionary(){
+total=0;
+int check=0;
+while(!isempty(check)){
+	while(!isempty(check)){
+		hashtable *tmpval=hashable[check];
+		hashable[check]=hashable[check]->next;
+		delete tmpval;
+	}
+	bucketsize=0;
+}
+}
+
