@@ -22,7 +22,7 @@ Dictionary::Dictionary(){
 }
 
 bool ::Dictionary:: isfull(){
-	//implement code 
+	//implement code
 }
 
 bool Dictionary::isempty(int k){
@@ -44,7 +44,7 @@ for (int i = 0; i < word.length(); i++)
 }
 total=total % size;
 
-return abs(total); //absolute value function change later
+return abs(total); //absolute value function c++ lib func
 }
 
 void Dictionary::insert(string nancy){
@@ -112,7 +112,7 @@ void Dictionary :: print(){
 				largestindex=i;
 			}
 			usedbuckets++;
-			
+
 		}
 	}
 	cout<<"Stats:"<<endl;
@@ -173,4 +173,3 @@ while(!isempty(check)){
 	bucketsize=0;
 }
 }
-
