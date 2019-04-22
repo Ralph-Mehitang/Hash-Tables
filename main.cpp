@@ -6,6 +6,8 @@
 #include <chrono>
 
 using namespace std;
+Dictionary* dictionary;
+string letters[]={ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
 int main(){
 Dictionary hashtable;
@@ -18,6 +20,8 @@ cout<<"---------------------------------"<<endl;
 cout<<"Loading the database"<<endl;
 cout<<"---------------------------------"<<endl;
 auto start = std::chrono::system_clock::now();
+//cout<<"what text do you want?"<<endl;
+//cin>>input;
 infile.open("english.txt");
 while(infile>>curr){
 hashtable.insert(curr);
@@ -30,8 +34,7 @@ std::cout << "finished at " << std::ctime(&end_time)
 << "elapsed time: " << elapsed_seconds.count() << "s\n";
 hashtable.print();
 cout<<endl;
-hashtable.userinput();
-
-
+hashtable.spellcheck();
+char vb;
 	return 0;
 }

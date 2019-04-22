@@ -5,6 +5,8 @@
 #include<string>
 #include <limits>
 #include <iomanip>
+#include <vector>
+
 //constructor
 //const int size_table = 466546;
 Dictionary::Dictionary(){
@@ -48,33 +50,16 @@ return abs(total); //absolute value function c++ lib func
 }
 
 void Dictionary::insert(string nancy){
-if(!isfull()){
-	int k=hash_table(nancy);
-	hashtable *enter=hashable[k];
-	if(enter==NULL){
-		enter=new hashtable;
-		enter->word=nancy;
-		enter->key=k;
-		enter->next= NULL;
-		enter->prev= NULL;
-		hashable[k]=enter;
-		top[k]=enter;
-
-	}
-	else{
-		while(enter !=NULL)
-			enter=enter->next;
-		enter= new hashtable;
-		enter->word=nancy;
-		enter->key=k;
-		enter->next=NULL;
-		enter->prev=top[k];
-		top[k]->next=enter;
-		top[k] = enter;
-	}
-		bucketsize[k]++; //increment the bucketsize
-		total++; //increment the total number of words
+int k=hash_table(nancy);
+hashtable *val = new hashtable;
+val->word=nancy;
+val->next = hashable[k];
+hashable[k]=val;
+if(val->next){
+	val->next->prev=val;
 }
+bucketsize[k]++;
+total++;
 }
 
 int Dictionary::buckets(int key){
@@ -124,43 +109,52 @@ void Dictionary :: print(){
 	cout<<"average number of nodes in each bucket "<<totalval()/usedbuckets<<endl;
 
 }
-void Dictionary:: userinput(){
+void Dictionary:: spellcheck(){
 	string input;
+	cout<<"----------------------------------------------------"<<endl;
+	cout<<"spellcheck program "<<endl;
 	cout<<"Please enter a sentence"<<endl;
 	getline(cin,input);
-}
-/*
-void Dictionary::spellcheck(hashtable node, string word){
-		int result=0;
-	int suggestion=0;
-	string text[256]; //using all ascii characters to check for unique characters ex.don't
-	string userinput;
-	string currword;
-	char r;
-	cout<<"Please enter a sentence: ";
-	getline(cin,userinput);
-	//splits each word from the inputed string into individual workds to see if they are spelled correctly
-	char* split=strtok(userinput.c_str(),DELIMITERS);
-	while(split!=NULL){
-		currword=split;
-		currword=lowercase(currword);
-		result+=spellcheck(hashtable,currword)
+	istringstream ss(input);
+	vector<string> v;
+
+    // Traverse through all words
+    do {
+        // Read a word
+        string word;
+        ss >> word;
+				int size=word.length();
+				char c;
+				for (int i = 0; i < size; i++) {
+						c=word[i];
+						if(c==','||c=='.'||c=='/'||c==';'||c==':'||c==' '){
+							word.erase(i,1);
+						}
+    }
+			v.push_back(word);
+	}while (ss);
+	//search function
+	cout<<"-----------------------"<<endl;
+	for (int k = 0; k < v.size()-1; k++) {
+		string hvals=v[k];
+		if(!search(hvals)){
+			cout<<hvals<<" is misspelled"<<endl;
+		}
 	}
-	if (result>0)
-	{
-		cout<<"The number of words that were splled incorrectly:"<<result<<endl;
-		result=0;
-			}
 }
-//converts to lowercase
-void Dictionary::lowercase(string word){
-	for (int i = 0; i < word.length; i++)
-	{
-		word[x] =lowercase(word[x]);
+bool Dictionary::search(string word){
+	int tmp=hash_table(word);
+	hashtable *curr=hashable[tmp];
+	while(curr){
+	if(curr->word==word){
+		return true;
 	}
-	return word;
+	else{
+		curr=curr->next;
+	}
 }
-*/
+	return false;
+}
 Dictionary::~Dictionary(){
 total=0;
 int check=0;

@@ -35,8 +35,10 @@ public:
 	int buckets(int); //bucketsize
 	void print(); //print table stats
 	void userinput();//user input function
-	void spellcheck(hashtable,string); //spellchecker
+	void spellcheck(); //spellchecker
 	void lowercase(string);
+	bool search(string); // string to check hash
+
 
 };
 #endif
